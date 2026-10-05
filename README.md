@@ -1,2 +1,2 @@
-# yet-another-software-factory
+# software-factory-factory
 Customizable loop with both decision and generative model routing
