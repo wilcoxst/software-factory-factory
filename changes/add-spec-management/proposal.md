@@ -1,6 +1,9 @@
 # Change: add-spec-management
 
-- **Status:** Grilling complete; spec deltas not yet drafted
+- **Status:** Deltas drafted; waiting on human review (big change)
+- **Size:** big. Reason: a new capability that sets the workflow every other capability depends on.
+- **Deltas:** [specs/spec-management/spec.md](specs/spec-management/spec.md) (15 requirements, 32 scenarios)
+- **Tasks:** [tasks.md](tasks.md)
 - **Capability:** `spec-management` (new)
 - **Follows:** [ADR 0001](../../docs/adr/0001-spec-management-approach.md)
 
@@ -35,4 +38,6 @@ ADR-worthy decisions (per G14): G3, G12 and G17 together set the change lifecycl
 
 ## Open questions
 
-None. The next step is drafting the `spec-management` deltas (requirements and scenarios) from the decisions above.
+None from grilling. Two parts of the deltas weren't covered by grilling and need a look at review:
+- The spec lint also checks that `mermaid` blocks parse. This comes from ADR 0001's requirement for renderable diagrams.
+- A rejected verifier draft unblocks the PR and sends it back to the coder with the reason. This follows from spec.md: if the spec stands, the PR is what's wrong.
