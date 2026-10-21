@@ -221,3 +221,6 @@ __marimo__/
 *.swp
 *.swo
 .DS_Store
+
+# Node
+node_modules/

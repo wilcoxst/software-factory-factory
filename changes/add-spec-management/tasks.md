@@ -19,11 +19,13 @@ These are the input to decomposition, which hasn't been specified yet. Each task
 
 ## Spec lint (deterministic)
 
-- [ ] Parse requirements and scenarios; check headings, SHALL, and the ID format. Covers `spec-management/requirement-without-scenario` and `spec-management/malformed-scenario-id`.
-- [ ] Check that IDs are unique within each capability. Covers `spec-management/lint-duplicate-id`.
-- [ ] Resolve scenario IDs cited in specs, changes, and tests. Covers `spec-management/lint-stale-reference-after-rename`.
-- [ ] Parse `mermaid` blocks. Covers `spec-management/lint-invalid-mermaid`.
-- [ ] Report requirements that more than one in-flight change modifies. Covers `spec-management/lint-flags-overlap`.
+Built in `tools/spec-lint/` (`npm run lint:specs`), tested in `tools/spec-lint/spec-lint.test.ts`, and run in CI on every PR.
+
+- [x] Parse requirements and scenarios; check headings, SHALL, and the ID format. Covers `spec-management/requirement-without-scenario` and `spec-management/malformed-scenario-id`.
+- [x] Check that IDs are unique within each capability. Covers `spec-management/lint-duplicate-id`.
+- [x] Resolve scenario IDs cited in specs, changes, and tests. Covers `spec-management/lint-stale-reference-after-rename`.
+- [x] Parse `mermaid` blocks. Covers `spec-management/lint-invalid-mermaid`.
+- [x] Report requirements that more than one in-flight change modifies. Covers `spec-management/lint-flags-overlap`.
 
 ## Skills (Agent Skills `SKILL.md`)
 
