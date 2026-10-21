@@ -17,7 +17,7 @@ Each capability gets a living spec at `specs/<capability>/spec.md` once it has b
 | `coding` | Sub-agents that get full context, implement a task, and prove their work in the PR | Not started |
 | `verification` | A review model different from the coder, running the end-to-end suite and deciding whether the test, the PR, or the spec is wrong | Not started |
 | `loop-metrics` | Measuring the loop (token efficiency, failure rate, how early failures are caught) and suggesting changes to it | Not started |
-| `loop-configuration` | The loop config file (sizes, approval policy, model routing, decision points) and the diagram generated from it | Not started |
+| `loop-configuration` | The loop config file (sizes, approval policy, model routing, decision points) and the diagram generated from it | Stub in [factory/loop.md](factory/loop.md) ([ADR 0004](docs/adr/0004-loop-config-format.md)) |
 | `installation` | Setting up and customizing a loop in a target project, such as the card game | Not started |
 
 ## The loop
