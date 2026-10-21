@@ -36,6 +36,12 @@ The shared vocabulary for this project. Grilling checks terms against this file:
 
 **Implementing PR.** A PR that builds an approved change. Its last step archives the change, so the specs and the code land on main together.
 
+**Scenario test.** An automated test of one scenario, named by its scenario ID, at `tests/e2e/<capability>/<scenario-slug>.test.ts` ([ADR 0005](docs/adr/0005-skill-e2e-harness.md)).
+
+**Scripted user.** The test harness's stand-in for a person. It gives each scenario's scripted answers, and the first (recommended) option for any other question.
+
+**Flaky.** A scenario that fails and then passes on its automatic retry. It doesn't block the PR, but loop metrics records it.
+
 **Archive.** Merging a finished change's deltas into the living specs and moving its folder to `changes/archive/YYYY-MM-DD-<name>/`.
 
 **ADR.** Architecture Decision Record: `docs/adr/NNNN-<title>.md`, which records one decision and why it was made.
