@@ -10,7 +10,9 @@ The shared vocabulary for this project. Grilling checks terms against this file:
 
 **Skill.** A portable `SKILL.md` instruction package in the Agent Skills standard. The factory installs and customizes skills in target projects.
 
-**Loop config.** A target project's settings for its loop: sizes, approval policy, model routing, and decision points. Specified by the `loop-configuration` capability.
+**Loop config.** A target project's settings for its loop: sizes, approval policy, model routing, stages, decision points, and metrics. It lives in the YAML frontmatter of `factory/loop.md`, and the markdown body explains each setting ([ADR 0004](docs/adr/0004-loop-config-format.md)). Specified by the `loop-configuration` capability.
+
+**Role.** What the loop config names instead of a model: `human`, `decision-model`, `generative-model`, or `review-model`. Routing maps each role to a concrete model.
 
 **Loop.** The configured sequence of stages that turns a request into verified, merged work, and feeds what it learns back into the specs and into its own configuration.
 

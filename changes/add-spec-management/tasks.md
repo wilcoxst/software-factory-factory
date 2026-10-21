@@ -5,7 +5,7 @@ These are the input to decomposition, which hasn't been specified yet. Each task
 ## Prerequisites
 
 - [x] **Choose a runtime for the factory's deterministic tools.** Decided in [ADR 0003](../../docs/adr/0003-tool-runtime.md): TypeScript run directly by Node 24+, with Mermaid checked using `mermaid` and `jsdom`.
-- [ ] **Stub the loop config.** Until `loop-configuration` is specified, use a minimal file holding this project's sizes (trivial, small, big) and approval policy (review model approves trivial and small; human approves big).
+- [x] **Stub the loop config.** Done in [factory/loop.md](../../factory/loop.md): sizes and approval policy, plus empty sections for routing, stages, decision points, and metrics. Format and location are in [ADR 0004](../../docs/adr/0004-loop-config-format.md).
 - [ ] **Choose an e2e test harness for skills.** The tests must drive an agent tool non-interactively and check files, PRs, and output. Scenario IDs go in test names.
 
 ## Spec lint (deterministic)

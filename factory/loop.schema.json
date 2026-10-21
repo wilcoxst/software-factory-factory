@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "factory/loop.schema.json",
+  "title": "Loop config (frontmatter of factory/loop.md)",
+  "type": "object",
+  "required": ["version", "sizes"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": 1 },
+    "sizes": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z][a-z0-9-]*$" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "process", "approver"],
+        "additionalProperties": false,
+        "properties": {
+          "description": { "type": "string", "minLength": 1 },
+          "process": { "enum": ["edit-living-spec", "change-folder", "grill-then-change-folder"] },
+          "approver": { "$ref": "#/$defs/approverRole" }
+        }
+      }
+    },
+    "routing": { "description": "Placeholder until decomposition-and-routing is specified.", "type": "object" },
+    "stages": { "description": "Placeholder until loop-configuration is specified.", "type": "array" },
+    "decision_points": { "description": "Placeholder until loop-configuration is specified.", "type": "array" },
+    "metrics": { "description": "Placeholder until loop-metrics is specified.", "type": "object" }
+  },
+  "$defs": {
+    "approverRole": { "enum": ["human", "review-model"] }
+  }
+}
