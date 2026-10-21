@@ -54,6 +54,8 @@ The shared vocabulary for this project. Grilling checks terms against this file:
 
 **Deterministic tool.** A factory script that runs without a model and always gives the same output for the same input. Written in TypeScript and run directly by Node 24+ ([ADR 0003](docs/adr/0003-tool-runtime.md)).
 
-**Spec lint.** The deterministic (no model) check of spec structure and ID references. It runs before the review model's spec check.
+**Spec lint.** The deterministic (no model) check of spec structure and ID references. `npm run lint:specs`. It runs before the review model's spec check.
+
+**Citation.** A reference to a scenario ID that the spec lint checks. In markdown under `specs/` or `changes/` (not the archive), it's inline code that is exactly `<capability>/<slug>` for a capability that exists. In a `*.test.ts` file, it's a quoted string that is exactly such an ID, or a test file at `tests/e2e/<capability>/<slug>.test.ts`.
 
 **Approval policy.** The rule in the loop config that says who approves each size before build, either a human or the review model.

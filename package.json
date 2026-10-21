@@ -1,0 +1,22 @@
+{
+  "name": "software-factory-factory",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "lint:specs": "node tools/spec-lint/cli.ts",
+    "test": "node --test \"tools/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "jsdom": "25.0.1",
+    "mermaid": "11.17.2"
+  },
+  "devDependencies": {
+    "@types/jsdom": "21.1.7",
+    "@types/node": "24.10.1",
+    "typescript": "5.9.3"
+  }
+}
