@@ -4,7 +4,7 @@ These are the input to decomposition, which hasn't been specified yet. Each task
 
 ## Prerequisites
 
-- [ ] **Choose a runtime for the factory's deterministic tools.** Spec lint is the first such tool. This affects every capability and is hard to reverse, so it needs an ADR (0003).
+- [x] **Choose a runtime for the factory's deterministic tools.** Decided in [ADR 0003](../../docs/adr/0003-tool-runtime.md): TypeScript run directly by Node 24+, with Mermaid checked using `mermaid` and `jsdom`.
 - [ ] **Stub the loop config.** Until `loop-configuration` is specified, use a minimal file holding this project's sizes (trivial, small, big) and approval policy (review model approves trivial and small; human approves big).
 - [ ] **Choose an e2e test harness for skills.** The tests must drive an agent tool non-interactively and check files, PRs, and output. Scenario IDs go in test names.
 
