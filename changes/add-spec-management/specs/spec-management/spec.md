@@ -121,9 +121,12 @@ A deterministic spec lint (no model) SHALL run on every change before the review
 - a requirement or scenario is malformed (see Requirement format)
 - a scenario ID is duplicated within a capability
 - a cited scenario ID doesn't resolve, whether it's cited in specs, changes, or tests
+- a scenario ID that an in-flight change renames or removes is still cited outside that change
 - a Mermaid block doesn't parse
 
 It SHALL report, without failing, any requirement that more than one in-flight change modifies.
+
+On a proposal PR (one whose changed files are all inside a single `changes/<change-name>/` folder), the lint SHALL report stale citations of renamed or removed IDs without failing. The tests that cite them can't change until the implementing PR.
 
 #### Scenario: spec-management/lint-duplicate-id
 - GIVEN two scenarios in the same capability with the ID `widgets/add-widget`
@@ -133,8 +136,15 @@ It SHALL report, without failing, any requirement that more than one in-flight c
 #### Scenario: spec-management/lint-stale-reference-after-rename
 - GIVEN a change that renames scenario `widgets/add-widget` to `widgets/create-widget`
 - AND a test that still cites `widgets/add-widget`
-- WHEN the spec lint runs
+- WHEN the spec lint runs on an implementing PR
 - THEN the lint fails and names the test file
+
+#### Scenario: spec-management/lint-stale-reference-on-proposal-pr
+- GIVEN a proposal PR whose change renames scenario `widgets/add-widget` to `widgets/create-widget`
+- AND a test that still cites `widgets/add-widget`
+- WHEN the spec lint runs on that PR
+- THEN the lint passes
+- AND it reports a warning that names the test file and the change
 
 #### Scenario: spec-management/lint-invalid-mermaid
 - GIVEN a spec containing a `mermaid` block with a syntax error
@@ -206,6 +216,16 @@ The last implementing PR for a change SHALL merge the change's deltas into the l
 - WHEN B's implementing PR tries to archive
 - THEN B's delta is rebased onto the updated living spec
 - AND the spec lint and spec check run again before B's PR can merge
+
+### Requirement: Amend an unarchived change
+To change a requirement that exists only in an approved change that hasn't been archived, the factory SHALL amend that change's folder in a new proposal PR, not create a separate change. The amendment SHALL be recorded as a new decision in that change's proposal, with its own size and reason, and approved under the approval policy for that size.
+
+#### Scenario: spec-management/amend-unarchived-change
+- GIVEN an approved change `add-widgets` that hasn't been archived
+- AND a request to change one of the requirements it adds
+- WHEN the request is handled
+- THEN a proposal PR changes only files in `changes/add-widgets/`
+- AND the proposal of `add-widgets` records the amendment as a new decision with a size and reason
 
 ### Requirement: Spec changes from verification
 When the verifier decides a spec is wrong, it SHALL draft a change in `changes/` explaining the problem and link it from the implementing PR. That PR SHALL stay blocked until the draft change is accepted or rejected. The draft SHALL enter triage like any other request.

@@ -37,6 +37,12 @@ Built in `tools/spec-lint/` (`npm run lint:specs`), tested in `tools/spec-lint/s
 - [ ] **Approval policy wiring**: small changes approved by the review model, big ones by a human. Covers `small-approved-by-review-model`, `big-waits-for-human`, and `human-rejects-returns-to-grill`.
 - [ ] **Package as installable skills.** Covers `skills-load-in-claude-code`.
 
+## Amendments (G18–G19)
+
+- [ ] Spec lint proposal-PR mode: add `--base <ref>`. If every file changed since the base is inside one `changes/<change-name>/` folder, report `stale-citation` as a warning. Covers `spec-management/lint-stale-reference-on-proposal-pr`; `spec-management/lint-stale-reference-after-rename` becomes the implementing-PR case.
+- [ ] CI: pass the PR's base branch to the spec lint.
+- [ ] `propose-change`: when the target requirement exists only in an unarchived change, amend that change's folder and record a new decision. Covers `spec-management/amend-unarchived-change`.
+
 ## Deferred to other capabilities
 
 - The verifier writing draft changes and blocking PRs (`verifier-*` scenarios) is built under `verification`. This change only defines how such drafts enter triage.

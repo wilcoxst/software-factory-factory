@@ -1,8 +1,8 @@
 # Change: add-spec-management
 
-- **Status:** Deltas drafted; waiting on human review (big change)
+- **Status:** Approved (PR #1). Amendment G18–G19 waiting on approval (small).
 - **Size:** big. Reason: a new capability that sets the workflow every other capability depends on.
-- **Deltas:** [specs/spec-management/spec.md](specs/spec-management/spec.md) (15 requirements, 32 scenarios)
+- **Deltas:** [specs/spec-management/spec.md](specs/spec-management/spec.md) (16 requirements, 34 scenarios)
 - **Tasks:** [tasks.md](tasks.md)
 - **Capability:** `spec-management` (new)
 - **Follows:** [ADR 0001](../../docs/adr/0001-spec-management-approach.md)
@@ -33,6 +33,8 @@ The loop's first stage is turning requests into specs that people and agents can
 | G15 | How does the grill skill ask questions? | **With the tool's multiple-choice picker when it has one.** The recommended option goes first, with up to 4 related questions per round. Tools without a picker get numbered options in plain text. |
 | G16 | Where do requests come from? | **Four sources, all of which go through triage:** chat with an agent, the verifier's draft changes, GitHub issues labelled for the factory (linked from the proposal), and suggestions from loop metrics. |
 | G17 | Where does approval happen, and how is it recorded? | **On a proposal PR.** Small and big changes go up as a PR containing only the change folder. Approving that PR is the approval: a human reviews big changes, and the review model comments and approves small ones. Build starts once the proposal merges. A separate implementing PR then builds the change and archives it (G12). Trivial edits use a single PR that the review model approves (G8). |
+| G18 | *Amendment.* On a proposal PR, should the lint fail when a renamed or removed ID is still cited? | **No: on a proposal PR it's a warning.** A proposal PR contains only its change folder (G17), so it can't update the tests that cite the old ID. On an implementing PR, which can update them, it stays an error. Found while building the spec lint. **Size:** small. Reason: one rule in one requirement, with a clear design. |
+| G19 | *Amendment.* How do you change a requirement that exists only in an approved, unarchived change? | **Amend that change's folder** in a new proposal PR, recorded as a new decision with its own size and reason. A separate change would MODIFY a requirement that isn't in any living spec yet. **Size:** small. Reason: one new requirement that only affects spec-management. |
 
 ADR-worthy decisions (per G14): G3, G12 and G17 together set the change lifecycle across spec management, coding and verification. They're recorded in [ADR 0002](../../docs/adr/0002-change-lifecycle.md).
 
