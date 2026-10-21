@@ -44,6 +44,8 @@ The shared vocabulary for this project. Grilling checks terms against this file:
 
 **Size.** The label triage gives a request. The available sizes are set in the loop config; this project uses **trivial**, **small**, and **big**. *Avoid:* "substantial" (an early name for big).
 
+**Deterministic tool.** A factory script that runs without a model and always gives the same output for the same input. Written in TypeScript and run directly by Node 24+ ([ADR 0003](docs/adr/0003-tool-runtime.md)).
+
 **Spec lint.** The deterministic (no model) check of spec structure and ID references. It runs before the review model's spec check.
 
 **Approval policy.** The rule in the loop config that says who approves each size before build, either a human or the review model.
