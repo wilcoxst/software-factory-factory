@@ -1,0 +1,5 @@
+{
+  "name": "e2e-harness-fixture",
+  "version": "0.0.0",
+  "description": "A tiny plugin that exercises the e2e harness: one question, a file, gh calls, and a push."
+}
