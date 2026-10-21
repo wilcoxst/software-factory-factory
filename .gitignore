@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Editor and OS files
+*.swp
+*.swo
+.DS_Store
