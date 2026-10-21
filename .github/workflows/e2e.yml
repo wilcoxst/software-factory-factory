@@ -1,0 +1,58 @@
+# Skill scenario tests (ADR 0005): one run per path-filtered PR, a failure
+# retried once (fail then pass = flaky, reported but not blocking), a cost
+# ceiling, and results uploaded as an artifact.
+name: E2E
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - "tools/**"
+      - "tests/**"
+      - "factory/loop.md"
+      - "specs/**"
+      - "changes/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/e2e.yml"
+
+jobs:
+  scenarios:
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      E2E_MAX_COST_USD: "5"
+      E2E_RESULTS_DIR: .e2e-results/ci
+    steps:
+      - name: Check for the model API key
+        id: key
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::The ANTHROPIC_API_KEY secret isn't set, so e2e scenarios are skipped."
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v5
+        if: steps.key.outputs.present == 'true'
+      - uses: actions/setup-node@v5
+        if: steps.key.outputs.present == 'true'
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install the Claude Code sandbox prerequisites
+        if: steps.key.outputs.present == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bubblewrap socat
+          # Ubuntu 24.04 blocks unprivileged user namespaces, which bubblewrap needs.
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - if: steps.key.outputs.present == 'true'
+        run: npm ci
+      - if: steps.key.outputs.present == 'true'
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.key.outputs.present == 'true'
+        with:
+          name: e2e-results
+          path: .e2e-results/ci

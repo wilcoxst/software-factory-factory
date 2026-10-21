@@ -1,0 +1,3 @@
+#!/bin/sh
+# Put this directory first on PATH to replace gh in scenario tests.
+exec node "$(dirname "$0")/../fake-gh.ts" "$@"

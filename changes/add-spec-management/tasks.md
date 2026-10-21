@@ -10,10 +10,10 @@ These are the input to decomposition, which hasn't been specified yet. Each task
 
 ## Test harness (from ADR 0005)
 
-- [ ] Scenario runner: temp fixture repo, skills loaded, Agent SDK `query()` with role-pinned models, sandboxed tools.
-- [ ] Scripted user: answers matched by question header or regex; otherwise the first (recommended) option.
-- [ ] Fake `gh` (records calls as JSON lines, returns canned responses) and a local bare `origin`.
-- [ ] CI workflow: path filter, one run plus one retry, flaky versus failed, cost ceiling, JSON results artifact.
+- [x] Scenario runner: temp fixture repo, skills loaded, Agent SDK `query()` with role-pinned models, sandboxed tools. (`tools/e2e/runner.ts`)
+- [x] Scripted user: answers matched by question header or regex; otherwise the first (recommended) option. (`tools/e2e/scripted-user.ts`)
+- [x] Fake `gh` (records calls as JSON lines, returns canned responses) and a local bare `origin`. (`tools/e2e/fake-gh/`, `tools/e2e/fixture.ts`)
+- [x] CI workflow: path filter, one run plus one retry, flaky versus failed, cost ceiling, JSON results artifact. (`.github/workflows/e2e.yml`, `tools/e2e/run.ts`)
 - [ ] **Human:** add the model API key as a GitHub Actions secret.
 - [ ] Package the skills as a Claude Code plugin and add an `evals/` suite for skill triggering (run on demand).
 
